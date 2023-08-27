@@ -1,0 +1,61 @@
+<header class="p-4">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          <a href="index.html">
+           <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
+            alt="logo" title="logo" class="logo">
+          </a>
+        </div>
+        
+        <div class="col-md-6">
+          <input type="text" placeholder="search movies"  class="form-control" [(ngModel)]="data">
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  
+    
+    <div class="container-fluid ">
+      <div class="row " id="movieContainer">
+        <div class="col-md-3 mb-4 " *ngFor="let s of backendData | search : data"  >
+            <div class="card m-2">
+            <figure class="movieContainer" >
+             <img src="https://image.tmdb.org/t/p/w1280/{{s.poster_path}}" alt="poster" title="poster" class="img-fluid">
+            
+            
+              <figCaption>
+                <div class="heading">
+                <div class="row">
+                  <div class="col-md-9">
+                      <p > {{s.original_title}}</p>
+                  </div>
+                  <div class="rating">
+                  <div class="col-md-3 d-flex align-items-center" >
+                     <span class="badge badge-warning text-white"
+                     
+                     [ngClass]="{
+                        'bg-success' : s.vote_average > 7,
+                        'bg-danger' : s.vote_average < 3,
+                        'bg-warning' : s.vote_average < 5
+                     }"> {{s.vote_average}} </span>
+                  </div>
+                </div>
+                </div>
+              </div>
+              <div class="overview">
+                <h3>
+                  <em>overview</em>
+                </h3>
+                <p>
+                {{s.overview}}
+                </p>
+              </div>
+              </figCaption>
+       
+            </figure>
+            </div>
+      </div>
+    </div>
